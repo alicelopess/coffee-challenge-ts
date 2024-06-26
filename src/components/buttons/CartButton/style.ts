@@ -11,6 +11,12 @@ export const CartButtonStyled = styled(BaseButton)<{
   position: relative;
   color: ${(props) => props.theme['yellow-dark']};
 
+  &:hover,
+  &:focus {
+    color: ${(props) => props.theme.white};
+    background: ${(props) => props.theme['yellow-dark']};
+  }
+
   ${({ quantity }) => {
     if (quantity) {
       return css`

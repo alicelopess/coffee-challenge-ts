@@ -1,10 +1,7 @@
 import { ButtonProps } from '../types'
 import { SecondaryButtonStyled } from './style'
 
-export function SecondaryButton({
-  children,
-  background = 'default',
-}: ButtonProps) {
+export function SecondaryButton({ children, background }: ButtonProps) {
   return (
     <SecondaryButtonStyled background={background}>
       {children}

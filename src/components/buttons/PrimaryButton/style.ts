@@ -4,7 +4,8 @@ import { ButtonProps } from '../types'
 export const BaseButton = styled.button<{
   background: ButtonProps['background']
 }>`
-  width: 132px;
+  width: 100%;
+  height: fit-content;
   padding: 12px 8px;
   border: none;
   border-radius: 6px;
@@ -27,18 +28,22 @@ export const BaseButton = styled.button<{
         background: ${(props) => props.theme['base-button']};
         color: ${(props) => props.theme['base-text']};
 
-        &:hover &:focus {
+        &:hover,
+        &:focus {
           background: ${(props) => props.theme['base-hover']};
           color: ${(props) => props.theme['base-subtitle']};
         }
       `
     }
+
     if (background === 'purple') {
       return css`
         background: ${(props) => props.theme['purple-dark']};
         color: ${(props) => props.theme.white};
 
-        &:hover &:focus {
+        &:hover,
+        &:focus {
+          color: ${(props) => props.theme.white};
           background: ${(props) => props.theme.purple};
         }
       `
@@ -48,7 +53,9 @@ export const BaseButton = styled.button<{
         background: ${(props) => props.theme.yellow};
         color: ${(props) => props.theme.white};
 
-        &:hover &:focus {
+        &:hover,
+        &:focus {
+          color: ${(props) => props.theme.white};
           background: ${(props) => props.theme['yellow-dark']};
         }
       `
