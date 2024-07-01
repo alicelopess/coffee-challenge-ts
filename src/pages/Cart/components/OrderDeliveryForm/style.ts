@@ -28,7 +28,7 @@ export const FormHeaderSubtitle = styled.span`
 export const InputsWrapper = styled.div`
   display: grid;
   grid-template-areas:
-    'cep cep cep cep . . . . . .'
+    'zip zip zip zip . . . . . .'
     'street street street street street street street street street street'
     'number number number number other other other other other other'
     'neighborhood neighborhood neighborhood neighborhood city city city city city state';

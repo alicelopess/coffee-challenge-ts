@@ -4,7 +4,7 @@
 
 import {
   HomeContainer,
-  IntroSectionBackground,
+  // IntroSectionBackground,
   IntroSectionContent,
   IntroSectionImage,
   IntroSectionMainContent,
@@ -13,9 +13,9 @@ import {
   IntroSectionWrapper,
 } from './style'
 import homeIntroImage from '../../assets/homeIntroImage.svg'
-import homeIntroBackground from '../../assets/homeIntroBackground.svg'
+// import homeIntroBackground from '../../assets/homeIntroBackground.svg'
 import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react'
-import { ProductList } from '../../components/ProductList'
+import { ProductList } from './components/ProductList'
 
 export function Home() {
   // const {
@@ -79,7 +79,7 @@ export function Home() {
           </IntroSectionSecondaryContentWrapper>
         </IntroSectionContent>
         <IntroSectionImage src={homeIntroImage} alt="" />
-        <IntroSectionBackground src={homeIntroBackground} />
+        {/* <IntroSectionBackground src={homeIntroBackground} /> */}
       </IntroSectionWrapper>
       <ProductList />
     </HomeContainer>

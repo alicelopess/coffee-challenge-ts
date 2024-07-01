@@ -12,29 +12,22 @@ export const Selector = styled.div<{ background: SelectorProps['background'] }>`
   gap: 12px;
   cursor: pointer;
 
-  background: ${(props) => props.theme['base-button']};
+  /* background: ${(props) => props.theme['base-button']};
   &:hover {
     background: ${(props) => props.theme['base-hover']};
   }
   &:focus-within {
     background: ${(props) => props.theme['purple-light']};
     border: 1px solid ${(props) => props.theme.purple};
-  }
+  } */
 
-  /* ${({ background }) => {
+  ${({ background }) => {
     if (background === 'default') {
       return css`
         background: ${(props) => props.theme['base-button']};
-        &:hover {
-          background: ${(props) => props.theme['base-hover']};
-        }
-        &:focus-within {
-          background: ${(props) => props.theme['purple-light']};
-          border: 1px solid ${(props) => props.theme.purple};
-        }
       `
     }
-  }} */
+  }}
 `
 export const SelectorText = styled.span`
   font-size: 12px;

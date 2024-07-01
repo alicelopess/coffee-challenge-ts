@@ -8,6 +8,10 @@ import {
 } from './style'
 import { CartSelector } from '../../../../components/selectors/CartSelector'
 
+// interface PaymentInformationProps {
+//   paymentOption: undefined | 'credit' | 'debit' | 'money' | 'pix'
+// }
+
 export function PaymentInformation() {
   return (
     <PaymentInfoContainer>
@@ -21,9 +25,9 @@ export function PaymentInformation() {
         </div>
       </PaymentInfoHeader>
       <PaymentOptionsContainer>
-        <CartSelector>Cartão de crédito</CartSelector>
-        <CartSelector>Cartão de débito</CartSelector>
-        <CartSelector>Dinheiro</CartSelector>
+        <CartSelector handleClick={() => {}}>Cartão de crédito</CartSelector>
+        <CartSelector handleClick={() => {}}>Cartão de débito</CartSelector>
+        <CartSelector handleClick={() => {}}>Dinheiro</CartSelector>
       </PaymentOptionsContainer>
     </PaymentInfoContainer>
   )

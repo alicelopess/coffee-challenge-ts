@@ -1,29 +1,46 @@
 import styled from 'styled-components'
 
 export const SuccessContainer = styled.div`
-  width: 100%;
+  /* width: 100%; */
+  /* margin: auto; */
   height: 100vh;
-  padding: 80px 160px;
+  padding-top: 5rem; //80px
+  /* padding: 80px 160px; */
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 40px;
+  gap: 1.75rem; //28px
+
+  @media screen and (min-width: 1440px) {
+    margin: auto;
+  }
 `
 
 export const SuccessTitle = styled.span`
   display: inline-block;
   margin-bottom: 4px;
   width: 100%;
+
   font-family: 'Baloo 2', sans-serif;
   font-size: 32px;
   font-weight: 800;
+  line-height: 130%;
   color: ${(props) => props.theme['yellow-dark']};
+
+  @media screen and (max-width: 1440px) {
+    text-align: center;
+  }
 `
 
 export const SuccessDescription = styled.span`
+  display: inline-block;
+  width: 100%;
   font-size: 20px;
   color: ${(props) => props.theme['base-subtitle']};
+  @media screen and (max-width: 1440px) {
+    text-align: center;
+  }
 `
 
 export const SuccessDeliveryContentWrapper = styled.div`
@@ -31,9 +48,30 @@ export const SuccessDeliveryContentWrapper = styled.div`
   height: fit-content;
 
   display: flex;
-  justify-content: space-between;
+  /* flex-direction: column; */
+  justify-content: center;
   align-items: center;
-  gap: 40px;
+  /* gap: 5rem; //80px */
+  gap: 6.375rem; //102px
+  /* flex-wrap: wrap; */
+
+  @media screen and (min-width: 1440px) {
+    /* flex-direction: row; */
+    justify-content: space-between;
+    align-items: center;
+    gap: 6.375rem; //102px
+    /* flex-wrap: wrap; */
+  }
+`
+
+export const SuccessDeliveryImage = styled.img`
+  @media screen and (max-width: 1440px) {
+    width: 452px;
+    height: 253px;
+  }
+  @media screen and (max-width: 1400px) {
+    display: none;
+  }
 `
 
 export const BaseGradientBackground = styled.div`
@@ -46,6 +84,9 @@ export const BaseGradientBackground = styled.div`
   );
   border-radius: 6px 36px 6px 36px;
   padding: 1px;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
 `
 
 export const SuccessDeliveryInformations = styled.div`
@@ -60,6 +101,10 @@ export const SuccessDeliveryInformations = styled.div`
   gap: 32px;
 
   background: ${(props) => props.theme.background};
+
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
 `
 export const SuccessDeliveryInformation = styled.div`
   width: 100%;
@@ -67,6 +112,7 @@ export const SuccessDeliveryInformation = styled.div`
 
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   gap: 12px;
 `
 export const SuccessDeliveryInformationIcon = styled.div`
@@ -82,4 +128,12 @@ export const SuccessDeliveryInformationIcon = styled.div`
   gap: 8px;
 
   color: ${(props) => props.theme.background};
+`
+
+export const SuccessDeliveryInformationText = styled.span`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  line-height: normal;
 `

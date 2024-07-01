@@ -2,8 +2,10 @@ import {
   BaseGradientBackground,
   SuccessContainer,
   SuccessDeliveryContentWrapper,
+  SuccessDeliveryImage,
   SuccessDeliveryInformation,
   SuccessDeliveryInformationIcon,
+  SuccessDeliveryInformationText,
   SuccessDeliveryInformations,
   SuccessDescription,
   SuccessTitle,
@@ -27,33 +29,34 @@ export function Success() {
               <SuccessDeliveryInformationIcon style={{ background: '#8047F8' }}>
                 <MapPin size={16} weight="fill" />
               </SuccessDeliveryInformationIcon>
-              <span>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>{' '}
-                <br /> Farrapos - Porto Alegre, RS
-              </span>
+              <SuccessDeliveryInformationText>
+                <span>
+                  Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                </span>
+                Farrapos - Porto Alegre, RS
+              </SuccessDeliveryInformationText>
             </SuccessDeliveryInformation>
             <SuccessDeliveryInformation>
               <SuccessDeliveryInformationIcon style={{ background: '#DBAC2C' }}>
                 <Timer size={16} weight="fill" />
               </SuccessDeliveryInformationIcon>
-              <span>
-                Previsão de entrega <br />
+              <SuccessDeliveryInformationText>
+                Previsão de entrega
                 <strong>20 min - 30 min </strong>
-              </span>
+              </SuccessDeliveryInformationText>
             </SuccessDeliveryInformation>
             <SuccessDeliveryInformation>
               <SuccessDeliveryInformationIcon style={{ background: '#C47F17' }}>
                 <CurrencyDollar size={16} />
               </SuccessDeliveryInformationIcon>
-              <span>
+              <SuccessDeliveryInformationText>
                 Pagamento na entrega
-                <br />
                 <strong>Cartão de Crédito </strong>
-              </span>
+              </SuccessDeliveryInformationText>
             </SuccessDeliveryInformation>
           </SuccessDeliveryInformations>
         </BaseGradientBackground>
-        <img src={cartSuccessImage} alt="" />
+        <SuccessDeliveryImage src={cartSuccessImage} alt="" />
       </SuccessDeliveryContentWrapper>
     </SuccessContainer>
   )

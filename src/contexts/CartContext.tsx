@@ -1,15 +1,20 @@
 import { ReactNode, createContext, useState } from 'react'
 
-interface Product {
-  title: string
-  price: number
-}
+// interface Product {
+//   id: string
+//   title: string
+//   price: number
+//   quantity: number
+// }
 
 export interface CartItem {
-  id: string
+  id?: string
+  productId: string
   title: string
   price: number
   quantity: number
+  // amount: number
+  url: string
 }
 
 interface CartProps {
@@ -21,12 +26,9 @@ interface CartProps {
 interface CartContextType {
   // cart: CartItem[]
   cartState: CartProps
-  createCartItem: (product: Product) => void
-  updateCartQuantity: (
-    item: CartItem,
-    operation: 'increment' | 'decrement',
-  ) => void
-  removeItemFromCart: (item: CartItem) => void
+  createCartItem: (product: CartItem) => void
+  updateCartQuantity: (id: string, operation: 'increment' | 'decrement') => void
+  removeItemFromCart: (id: string) => void
   totalCartAmount: number
   finishPurchase: () => CartItem[]
 }
@@ -49,36 +51,41 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const [cartState, setCartState] = useState<CartProps>(initialState)
 
-  function createCartItem(product: Product) {
+  function createCartItem(product: CartItem) {
     const { cart } = cartState
-    const { title, price } = product
+    const { productId, title, price, quantity, url } = product
     const cartItem: CartItem = {
       id: String(cart.length + 1),
+      productId,
       title,
       price,
-      quantity: 1,
+      quantity,
+      // amount,
+      url,
     }
     const newCart = [...cart, cartItem]
     const newCartState = { cart: newCart, isPurchased: false }
     setCartState(newCartState)
     localStorage.setItem('cart', JSON.stringify(newCartState))
+
+    console.log('Adicionado ao Carrinho!')
   }
 
   function updateCartQuantity(
-    item: CartItem,
+    id: string,
     operation: 'increment' | 'decrement',
   ) {
     const { cart } = cartState
     const newCart = [...cart]
     const searchItemIndex = newCart.findIndex(
-      (searchItem) => item.id === searchItem.id,
+      (searchItem) => id === searchItem.id,
     )
 
     operation === 'increment'
       ? (newCart[searchItemIndex].quantity += 1)
       : newCart[searchItemIndex].quantity
         ? (newCart[searchItemIndex].quantity -= 1)
-        : 0
+        : (newCart[searchItemIndex].quantity = 1)
 
     const newCartState = { cart: newCart, isPurchased: false }
     setCartState(newCartState)
@@ -90,11 +97,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     0,
   )
 
-  function removeItemFromCart(item: CartItem) {
+  function removeItemFromCart(id: string) {
     const { cart } = cartState
     const newCart = [...cart]
     const searchItemIndex = newCart.findIndex(
-      (searchItem) => item.id === searchItem.id,
+      (searchItem) => id === searchItem.id,
     )
     newCart.splice(searchItemIndex, 1)
 

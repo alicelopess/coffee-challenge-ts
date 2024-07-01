@@ -1,10 +1,10 @@
-import { CatalogCard } from '../cards/CatalogCard'
+import { CatalogCard } from '../../../../components/cards/CatalogCard'
 import {
   ProductListContainer,
   ProductListItems,
   ProductListTitle,
 } from './style'
-import { ProductData } from '../../services/dbMock'
+import { ProductData } from '../../../../services/dbMock'
 // import { ProductProps } from '../cards/CatalogCard/type'
 
 export function ProductList() {
@@ -15,6 +15,7 @@ export function ProductList() {
         {ProductData.map((product, index) => (
           <CatalogCard
             key={index}
+            id={String(product.id)}
             title={product.name}
             description={product.description}
             price={String(product.price)}

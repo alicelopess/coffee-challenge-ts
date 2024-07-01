@@ -10,3 +10,10 @@ export const LayoutContainer = styled.div`
 
   background: ${(props) => props.theme.background};
 `
+export const LayoutMainContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 0 160px;
+`
