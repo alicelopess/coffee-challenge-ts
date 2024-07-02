@@ -4,7 +4,7 @@ export const CatalogCardContainer = styled.div`
   width: 256px;
   height: 310px;
   border-radius: 6px 36px 6px 36px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding: 112px 20px 20px;
   position: relative;
 
@@ -15,6 +15,13 @@ export const CatalogCardContainer = styled.div`
   gap: 33px;
 
   background: transparent;
+
+  /* Glassmorphism */
+  /* background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.5px);
+  -webkit-backdrop-filter: blur(10.5px);
+  border: 1px solid rgba(255, 255, 255, 0.88); */
 `
 export const CatalogCardImg = styled.img`
   width: 120px;
@@ -22,7 +29,7 @@ export const CatalogCardImg = styled.img`
   position: absolute;
   top: 0;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
   transform: translateY(-20px) translateX(-50%);
   left: 50%;
 `

@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const CartContainer = styled.div`
-  /* width: 100%; */
+  width: 100%;
   padding-top: 40px;
-  margin: auto;
+  /* margin: auto; */
 
   display: flex;
   flex-direction: column;
@@ -15,6 +15,8 @@ export const CartContainer = styled.div`
   background: transparent;
 
   @media screen and (min-width: 1440px) {
+    width: fit-content;
+    margin: auto;
     flex-direction: row;
     align-items: flex-start;
   }
@@ -25,6 +27,15 @@ export const OrderInformationContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+    flex-direction: row;
+  }
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `
 export const BaseCartTitle = styled.span`
   display: inline-block;
@@ -46,6 +57,12 @@ export const CartInformationContainer = styled.div`
   display: grid;
   gap: 24px;
   grid-template-rows: auto 1fr auto;
+
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+    /* grid-template-rows: auto auto;
+    grid-template-columns: auto auto; */
+  }
 `
 export const CartItemsWrapper = styled.div`
   width: 100%;

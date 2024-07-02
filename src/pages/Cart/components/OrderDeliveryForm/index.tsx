@@ -9,17 +9,19 @@ import {
 } from './style'
 import { useState } from 'react'
 
-interface cepInfoProps {
-  street: string
-  number: string | null
-  neighborhood: string
-  city: string
-  state: string
-  other: string | null
-}
+import { AddressInfoProps } from '../../../../contexts/CartContext'
+
+// interface AddressInfoProps {
+//   street: string
+//   number: string | null
+//   neighborhood: string
+//   city: string
+//   state: string
+//   other: string | null
+// }
 
 export function OrderDeliveryForm() {
-  const [zipInfo, setZipInfo] = useState({} as cepInfoProps)
+  const [addressInfo, setAddressInfo] = useState({} as AddressInfoProps)
   const handleChangeZipValue = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -29,7 +31,7 @@ export function OrderDeliveryForm() {
         `https://brasilapi.com.br/api/cep/v1/${zipValue}`,
       )
       const data = await response.json()
-      setZipInfo({ ...data, other: null, number: null })
+      setAddressInfo({ ...data, other: null, number: null })
     }
   }
 
@@ -54,10 +56,10 @@ export function OrderDeliveryForm() {
         <BaseInput
           placeholder="Rua"
           style={{ gridArea: 'street' }}
-          value={zipInfo ? zipInfo.street : undefined}
+          value={addressInfo ? addressInfo.street : undefined}
           onChange={(event) => {
             const newStreetValue = event.target.value
-            setZipInfo({ ...zipInfo, street: newStreetValue })
+            setAddressInfo({ ...addressInfo, street: newStreetValue })
           }}
         />
         <BaseInput
@@ -65,7 +67,7 @@ export function OrderDeliveryForm() {
           style={{ gridArea: 'number' }}
           onChange={(event) => {
             const newNumberValue = event.target.value
-            setZipInfo({ ...zipInfo, number: newNumberValue })
+            setAddressInfo({ ...addressInfo, number: newNumberValue })
           }}
         />
         <BaseInput
@@ -73,34 +75,37 @@ export function OrderDeliveryForm() {
           style={{ gridArea: 'other' }}
           onChange={(event) => {
             const newComplementValue = event.target.value
-            setZipInfo({ ...zipInfo, other: newComplementValue })
+            setAddressInfo({ ...addressInfo, other: newComplementValue })
           }}
         />
         <BaseInput
           placeholder="Bairro"
           style={{ gridArea: 'neighborhood' }}
-          value={zipInfo ? zipInfo.neighborhood : undefined}
+          value={addressInfo ? addressInfo.neighborhood : undefined}
           onChange={(event) => {
             const newNeighborhoodValue = event.target.value
-            setZipInfo({ ...zipInfo, neighborhood: newNeighborhoodValue })
+            setAddressInfo({
+              ...addressInfo,
+              neighborhood: newNeighborhoodValue,
+            })
           }}
         />
         <BaseInput
           placeholder="Cidade"
           style={{ gridArea: 'city' }}
-          value={zipInfo ? zipInfo.city : undefined}
+          value={addressInfo ? addressInfo.city : undefined}
           onChange={(event) => {
             const newCityValue = event.target.value
-            setZipInfo({ ...zipInfo, city: newCityValue })
+            setAddressInfo({ ...addressInfo, city: newCityValue })
           }}
         />
         <BaseInput
-          placeholder="Estado"
+          placeholder="UF"
           style={{ gridArea: 'state' }}
-          value={zipInfo ? zipInfo.state : undefined}
+          value={addressInfo ? addressInfo.state : undefined}
           onChange={(event) => {
             const newStateValue = event.target.value
-            setZipInfo({ ...zipInfo, state: newStateValue })
+            setAddressInfo({ ...addressInfo, state: newStateValue })
           }}
         />
       </InputsWrapper>

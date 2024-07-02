@@ -61,3 +61,25 @@ export const BaseInput = styled.input`
     color: ${(props) => props.theme['base-label']};
   }
 `
+
+// export const SendAddressButton = styled.button`
+//   grid-area: 'addressButton';
+
+//   width: 100%;
+//   height: fit-content;
+//   padding: 12px 8px;
+//   border: none;
+//   border-radius: 6px;
+
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 4px;
+
+//   font-family: 'Roboto', sans-serif;
+//   font-size: 14px;
+//   font-weight: 700;
+//   text-transform: uppercase;
+
+//   cursor: pointer;
+// `

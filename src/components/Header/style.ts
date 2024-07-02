@@ -9,6 +9,32 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 1392px) {
+    padding: 2rem 128px;
+    /* padding: 0 96px; */
+  }
+
+  /* @media screen and (max-width: 1156px) {
+    padding: 2rem 128px;
+    padding: 2rem 96px;
+  } */
+  @media screen and (max-width: 1088px) {
+    padding: 2rem 64px;
+  }
+  /* @media screen and (max-width: 1024px) {
+    padding: 2rem 64px;
+  } */
+  @media screen and (max-width: 960px) {
+    /* padding: 0 128px; */
+    padding: 2rem 32px;
+  }
+  /* @media screen and (max-width: 752px) {
+    padding: 2rem 96px;
+  } */
+  /* @media screen and (max-width: 650px) {
+    padding: 2rem 64px;
+  } */
 `
 
 export const LogoWrapper = styled.div`

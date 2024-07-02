@@ -12,6 +12,18 @@ export const Selector = styled.div<{ background: SelectorProps['background'] }>`
   gap: 12px;
   cursor: pointer;
 
+  @media screen and (max-width: 1440px) {
+    min-width: 178.67px;
+    width: 100%;
+    justify-content: center;
+  }
+  @media screen and (max-width: 1200px) {
+    justify-content: flex-start;
+  }
+  @media screen and (max-width: 992px) {
+    justify-content: center;
+  }
+
   /* background: ${(props) => props.theme['base-button']};
   &:hover {
     background: ${(props) => props.theme['base-hover']};

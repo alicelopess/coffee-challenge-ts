@@ -10,6 +10,11 @@ export const CartCardContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.5rem;
+
+  @media screen and (max-width: 1440px) {
+    min-width: 368px;
+    width: 100%;
+  }
 `
 
 export const CartCardImg = styled.img`

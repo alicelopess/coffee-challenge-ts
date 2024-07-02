@@ -9,6 +9,12 @@ export const ProductListContainer = styled.section`
   align-items: flex-start;
   /* align-items: center; */
   gap: 54px;
+
+  /* background-color: yellow; */
+
+  @media screen and (max-width: 1392px) {
+    align-items: center;
+  }
 `
 export const ProductListTitle = styled.span`
   /* display: inline-block;
@@ -26,8 +32,24 @@ export const ProductListItems = styled.div`
 
   display: grid;
   grid-template-columns: repeat(4, auto);
+  /* grid-template-columns: repeat(4, 1fr); */
   /* justify-items: center;
   align-items: center;
   justify-content: center; */
   gap: 40px 32px;
+
+  /* background-color: blueviolet; */
+
+  @media screen and (max-width: 1439px) {
+    /* grid-template-columns: repeat(3, auto); */
+    gap: 40px 16px;
+  }
+  @media screen and (max-width: 1328px) {
+    grid-template-columns: repeat(3, auto);
+    gap: 40px 32px;
+    /* gap: 40px 16px; */
+  }
+  /* @media screen and (max-width: 960px) {
+    grid-template-columns: repeat(2, auto);
+  } */
 `

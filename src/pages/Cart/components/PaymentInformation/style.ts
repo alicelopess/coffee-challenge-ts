@@ -6,6 +6,11 @@ export const PaymentInfoContainer = styled.div`
   flex-direction: column;
   gap: 2rem;
   padding: 40px;
+
+  @media screen and (max-width: 1440px) {
+    min-width: 420px;
+    flex: 1;
+  }
 `
 export const PaymentInfoHeader = styled.div`
   width: 100%;
@@ -32,4 +37,18 @@ export const PaymentOptionsContainer = styled.div`
   gap: 12px;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 1440px) {
+    /* min-width: 178.67px;
+    width: 100%; */
+    /* width: fit-content; */
+
+    flex-wrap: wrap;
+  }
+  @media screen and (max-width: 1200px) {
+    flex-wrap: nowrap;
+  }
+  @media screen and (max-width: 992px) {
+    flex-wrap: wrap;
+  }
 `

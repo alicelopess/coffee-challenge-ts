@@ -17,6 +17,27 @@ export interface CartItem {
   url: string
 }
 
+export interface AddressInfoProps {
+  street: string
+  number: string | null
+  neighborhood: string
+  city: string
+  state: string
+  other: string | null
+}
+
+export interface DeliveryInfoProps {
+  zipCode: string
+  address: {
+    street: string
+    neighborhood: string
+    number?: string | null
+    city: string
+    state: string
+    other?: string | null
+  }
+}
+
 interface CartProps {
   cart: CartItem[]
   isPurchased: boolean
@@ -30,6 +51,8 @@ interface CartContextType {
   updateCartQuantity: (id: string, operation: 'increment' | 'decrement') => void
   removeItemFromCart: (id: string) => void
   totalCartAmount: number
+  deliveryInfo: DeliveryInfoProps
+  createDeliveryInfo: (addressInfo: AddressInfoProps, zivValue: string) => void
   finishPurchase: () => CartItem[]
 }
 
@@ -110,6 +133,26 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     localStorage.setItem('cart', JSON.stringify(newCartState))
   }
 
+  const [deliveryInfo, setDeliveryInfo] = useState({} as DeliveryInfoProps)
+
+  function createDeliveryInfo(addressInfo: AddressInfoProps, zivValue: string) {
+    // const { zipCode, address } = info
+    const { city, neighborhood, state, street, number, other } = addressInfo
+
+    const newDeliveryInfo: DeliveryInfoProps = {
+      zipCode: zivValue,
+      address: {
+        street,
+        neighborhood,
+        number,
+        city,
+        state,
+        other,
+      },
+    }
+    setDeliveryInfo(newDeliveryInfo)
+  }
+
   function finishPurchase() {
     const { cart } = cartState
     const cartFinishedPurchaseState = [...cart]
@@ -133,6 +176,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         updateCartQuantity,
         totalCartAmount,
         removeItemFromCart,
+        deliveryInfo,
+        createDeliveryInfo,
         finishPurchase,
       }}
     >
