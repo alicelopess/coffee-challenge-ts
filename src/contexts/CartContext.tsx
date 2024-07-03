@@ -17,13 +17,18 @@ export interface CartItem {
   url: string
 }
 
+export interface PaymentOptionProps {
+  option: string
+  title: string
+}
+
 export interface AddressInfoProps {
   street: string
-  number: string | null
+  number?: string | null
   neighborhood: string
   city: string
   state: string
-  other: string | null
+  other?: string | null
 }
 
 export interface DeliveryInfoProps {
@@ -36,6 +41,7 @@ export interface DeliveryInfoProps {
     state: string
     other?: string | null
   }
+  deliveryPrice: number
 }
 
 interface CartProps {
@@ -53,6 +59,8 @@ interface CartContextType {
   totalCartAmount: number
   deliveryInfo: DeliveryInfoProps
   createDeliveryInfo: (addressInfo: AddressInfoProps, zivValue: string) => void
+  paymentOptionValue: PaymentOptionProps
+  createPaymentOption: (option: string, optionTitle: string) => void
   finishPurchase: () => CartItem[]
 }
 
@@ -134,13 +142,14 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   const [deliveryInfo, setDeliveryInfo] = useState({} as DeliveryInfoProps)
+  console.log(deliveryInfo)
 
-  function createDeliveryInfo(addressInfo: AddressInfoProps, zivValue: string) {
+  function createDeliveryInfo(addressInfo: AddressInfoProps, zipValue: string) {
     // const { zipCode, address } = info
     const { city, neighborhood, state, street, number, other } = addressInfo
 
     const newDeliveryInfo: DeliveryInfoProps = {
-      zipCode: zivValue,
+      zipCode: zipValue,
       address: {
         street,
         neighborhood,
@@ -149,8 +158,17 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         state,
         other,
       },
+      deliveryPrice: 3.5,
     }
     setDeliveryInfo(newDeliveryInfo)
+  }
+
+  const [paymentOptionValue, setPaymentOptionValue] = useState(
+    {} as PaymentOptionProps,
+  )
+
+  function createPaymentOption(option: string, optionTitle: string) {
+    setPaymentOptionValue({ option, title: optionTitle })
   }
 
   function finishPurchase() {
@@ -178,6 +196,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         removeItemFromCart,
         deliveryInfo,
         createDeliveryInfo,
+        paymentOptionValue,
+        createPaymentOption,
         finishPurchase,
       }}
     >

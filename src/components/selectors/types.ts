@@ -5,4 +5,6 @@ export interface SelectorProps {
   background?: 'default' | 'yellow' | 'purple'
   border?: 'default'
   handleClick: () => void
+  selectionOption: string
+  isSelected: boolean
 }

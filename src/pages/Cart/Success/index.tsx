@@ -12,8 +12,14 @@ import {
 } from './style'
 import cartSuccessImage from '../../../assets/cartSuccessImage.svg'
 import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
+// import { useCart } from '../../../hooks/useCart'
 
 export function Success() {
+  // const { paymentOptionValue, deliveryInfo } = useCart()
+  // const { address } = deliveryInfo
+  // console.log(address)
+  // const { title: paymentTitle } = paymentOptionValue
+
   return (
     <SuccessContainer>
       <div>
@@ -51,7 +57,7 @@ export function Success() {
               </SuccessDeliveryInformationIcon>
               <SuccessDeliveryInformationText>
                 Pagamento na entrega
-                <strong>Cartão de Crédito </strong>
+                <strong>Cartão de Crédito</strong>
               </SuccessDeliveryInformationText>
             </SuccessDeliveryInformation>
           </SuccessDeliveryInformations>

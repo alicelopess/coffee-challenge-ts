@@ -7,12 +7,39 @@ import {
   PaymentOptionsContainer,
 } from './style'
 import { CartSelector } from '../../../../components/selectors/CartSelector'
+import { useCart } from '../../../../hooks/useCart'
+
+const paymentOptions = [
+  {
+    option: 'credit',
+    title: 'Cartão de Crédito',
+    icon: 'some',
+  },
+  {
+    option: 'debit',
+    title: 'Cartão de Débito',
+    icon: 'some',
+  },
+  {
+    option: 'cash',
+    title: 'Dinheiro',
+    icon: 'some',
+  },
+  // {
+  //   option: 'pix',
+  //   title: 'Pix',
+  //   icon: 'some',
+  // },
+]
 
 // interface PaymentInformationProps {
-//   paymentOption: undefined | 'credit' | 'debit' | 'money' | 'pix'
+//   paymentOption: 'credit' | 'debit' | 'money' | 'pix'
 // }
 
 export function PaymentInformation() {
+  const { paymentOptionValue, createPaymentOption } = useCart()
+  // const [paymentOptionValue, setPaymentOptionValue] = useState('')
+
   return (
     <PaymentInfoContainer>
       <PaymentInfoHeader>
@@ -25,9 +52,22 @@ export function PaymentInformation() {
         </div>
       </PaymentInfoHeader>
       <PaymentOptionsContainer>
-        <CartSelector handleClick={() => {}}>Cartão de crédito</CartSelector>
-        <CartSelector handleClick={() => {}}>Cartão de débito</CartSelector>
-        <CartSelector handleClick={() => {}}>Dinheiro</CartSelector>
+        {paymentOptions.map((item, index) => {
+          return (
+            <CartSelector
+              isSelected={paymentOptionValue.option === item.option}
+              selectionOption={item.option}
+              key={index}
+              handleClick={() => {
+                createPaymentOption(item.option, item.title)
+                // console.log(item)
+                // console.log(index)
+              }}
+            >
+              {item.title}
+            </CartSelector>
+          )
+        })}
       </PaymentOptionsContainer>
     </PaymentInfoContainer>
   )

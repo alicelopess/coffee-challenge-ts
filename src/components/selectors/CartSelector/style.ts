@@ -1,7 +1,11 @@
 import styled, { css } from 'styled-components'
 import { SelectorProps } from '../types'
 
-export const Selector = styled.div<{ background: SelectorProps['background'] }>`
+export const Selector = styled.div<{
+  // background: SelectorProps['background']
+  selectionOption: SelectorProps['selectionOption']
+  isSelected: SelectorProps['isSelected']
+}>`
   width: 178.67px;
   padding: 1rem;
   border-radius: 6px;
@@ -11,6 +15,8 @@ export const Selector = styled.div<{ background: SelectorProps['background'] }>`
   justify-content: flex-start;
   gap: 12px;
   cursor: pointer;
+
+  background: ${(props) => props.theme['base-button']};
 
   @media screen and (max-width: 1440px) {
     min-width: 178.67px;
@@ -24,19 +30,11 @@ export const Selector = styled.div<{ background: SelectorProps['background'] }>`
     justify-content: center;
   }
 
-  /* background: ${(props) => props.theme['base-button']};
-  &:hover {
-    background: ${(props) => props.theme['base-hover']};
-  }
-  &:focus-within {
-    background: ${(props) => props.theme['purple-light']};
-    border: 1px solid ${(props) => props.theme.purple};
-  } */
-
-  ${({ background }) => {
-    if (background === 'default') {
+  ${({ isSelected }) => {
+    if (isSelected) {
       return css`
-        background: ${(props) => props.theme['base-button']};
+        background: ${(props) => props.theme['purple-light']};
+        border: 1px solid ${(props) => props.theme.purple};
       `
     }
   }}

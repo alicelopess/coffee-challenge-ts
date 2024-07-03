@@ -9,7 +9,8 @@ import {
 } from './style'
 import { useState } from 'react'
 
-import { AddressInfoProps } from '../../../../contexts/CartContext'
+// import { AddressInfoProps } from '../../../../contexts/CartContext'
+import { useCart } from '../../../../hooks/useCart'
 
 // interface AddressInfoProps {
 //   street: string
@@ -21,17 +22,22 @@ import { AddressInfoProps } from '../../../../contexts/CartContext'
 // }
 
 export function OrderDeliveryForm() {
-  const [addressInfo, setAddressInfo] = useState({} as AddressInfoProps)
+  const { deliveryInfo, createDeliveryInfo } = useCart()
+  // const [addressInfo, setAddressInfo] = useState({} as AddressInfoProps)
+  const { address } = deliveryInfo
+  const [zipValue, setZipValue] = useState('')
+
   const handleChangeZipValue = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    const zipValue = event.target.value
-    if (zipValue.length === 8) {
+    const zipValueInput = event.target.value
+    if (zipValueInput.length === 8) {
       const response = await fetch(
-        `https://brasilapi.com.br/api/cep/v1/${zipValue}`,
+        `https://brasilapi.com.br/api/cep/v1/${zipValueInput}`,
       )
       const data = await response.json()
-      setAddressInfo({ ...data, other: null, number: null })
+      createDeliveryInfo({ ...data, other: null, number: null }, zipValueInput)
+      setZipValue(zipValueInput)
     }
   }
 
@@ -56,10 +62,11 @@ export function OrderDeliveryForm() {
         <BaseInput
           placeholder="Rua"
           style={{ gridArea: 'street' }}
-          value={addressInfo ? addressInfo.street : undefined}
+          value={address ? address.street : undefined}
           onChange={(event) => {
             const newStreetValue = event.target.value
-            setAddressInfo({ ...addressInfo, street: newStreetValue })
+            // setAddressInfo({ ...addressInfo, street: newStreetValue })
+            createDeliveryInfo({ ...address, street: newStreetValue }, zipValue)
           }}
         />
         <BaseInput
@@ -67,7 +74,8 @@ export function OrderDeliveryForm() {
           style={{ gridArea: 'number' }}
           onChange={(event) => {
             const newNumberValue = event.target.value
-            setAddressInfo({ ...addressInfo, number: newNumberValue })
+            // setAddressInfo({ ...addressInfo, number: newNumberValue })
+            createDeliveryInfo({ ...address, number: newNumberValue }, zipValue)
           }}
         />
         <BaseInput
@@ -75,38 +83,45 @@ export function OrderDeliveryForm() {
           style={{ gridArea: 'other' }}
           onChange={(event) => {
             const newComplementValue = event.target.value
-            setAddressInfo({ ...addressInfo, other: newComplementValue })
+            // setAddressInfo({ ...addressInfo, other: newComplementValue })
+            createDeliveryInfo(
+              {
+                ...address,
+                other: newComplementValue,
+              },
+              zipValue,
+            )
           }}
         />
         <BaseInput
           placeholder="Bairro"
           style={{ gridArea: 'neighborhood' }}
-          value={addressInfo ? addressInfo.neighborhood : undefined}
-          onChange={(event) => {
-            const newNeighborhoodValue = event.target.value
-            setAddressInfo({
-              ...addressInfo,
-              neighborhood: newNeighborhoodValue,
-            })
-          }}
+          value={address ? address.neighborhood : undefined}
+          // onChange={(event) => {
+          //   const newNeighborhoodValue = event.target.value
+          //   setAddressInfo({
+          //     ...addressInfo,
+          //     neighborhood: newNeighborhoodValue,
+          //   })
+          // }}
         />
         <BaseInput
           placeholder="Cidade"
           style={{ gridArea: 'city' }}
-          value={addressInfo ? addressInfo.city : undefined}
-          onChange={(event) => {
-            const newCityValue = event.target.value
-            setAddressInfo({ ...addressInfo, city: newCityValue })
-          }}
+          value={address ? address.city : undefined}
+          // onChange={(event) => {
+          //   const newCityValue = event.target.value
+          //   setAddressInfo({ ...addressInfo, city: newCityValue })
+          // }}
         />
         <BaseInput
           placeholder="UF"
           style={{ gridArea: 'state' }}
-          value={addressInfo ? addressInfo.state : undefined}
-          onChange={(event) => {
-            const newStateValue = event.target.value
-            setAddressInfo({ ...addressInfo, state: newStateValue })
-          }}
+          value={address ? address.state : undefined}
+          // onChange={(event) => {
+          //   const newStateValue = event.target.value
+          //   setAddressInfo({ ...addressInfo, state: newStateValue })
+          // }}
         />
       </InputsWrapper>
     </FormContainer>
