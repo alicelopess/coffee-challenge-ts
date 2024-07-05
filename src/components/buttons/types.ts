@@ -5,4 +5,5 @@ export interface ButtonProps {
   background?: 'default' | 'yellow' | 'purple'
   quantity?: number
   handleClick: () => void
+  // isDisabled: boolean
 }

@@ -18,8 +18,8 @@ export interface CartItem {
 }
 
 export interface PaymentOptionProps {
-  option: string
-  title: string
+  option: string | null
+  title: string | null
 }
 
 export interface AddressInfoProps {
@@ -32,22 +32,17 @@ export interface AddressInfoProps {
 }
 
 export interface DeliveryInfoProps {
-  zipCode: string
-  address: {
-    street: string
-    neighborhood: string
-    number?: string | null
-    city: string
-    state: string
-    other?: string | null
-  }
-  deliveryPrice: number
+  zipCode: string | null
+  address: AddressInfoProps | null
+  deliveryPrice: number | null
 }
 
 interface CartProps {
   cart: CartItem[]
   isPurchased: boolean
   purchaseAmount?: number
+  deliveryInformation?: DeliveryInfoProps
+  paymentOption?: PaymentOptionProps
 }
 
 interface CartContextType {
@@ -57,8 +52,11 @@ interface CartContextType {
   updateCartQuantity: (id: string, operation: 'increment' | 'decrement') => void
   removeItemFromCart: (id: string) => void
   totalCartAmount: number
-  deliveryInfo: DeliveryInfoProps
-  createDeliveryInfo: (addressInfo: AddressInfoProps, zivValue: string) => void
+  tempDeliveryInfo: DeliveryInfoProps
+  createTempDeliveryInfo: (
+    addressInfo: AddressInfoProps,
+    zivValue: string,
+  ) => void
   paymentOptionValue: PaymentOptionProps
   createPaymentOption: (option: string, optionTitle: string) => void
   finishPurchase: () => CartItem[]
@@ -77,10 +75,23 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return JSON.parse(storagedCartAsJSON)
     }
 
-    return { cart: [], isPurchased: false }
+    return {
+      cart: [],
+      isPurchased: false,
+      deliveryInformation: {
+        zipCode: null,
+        address: null,
+        deliveryPrice: null,
+      },
+      paymentOption: {
+        option: null,
+        title: null,
+      },
+    }
   }
 
   const [cartState, setCartState] = useState<CartProps>(initialState)
+  console.log(cartState)
 
   function createCartItem(product: CartItem) {
     const { cart } = cartState
@@ -95,7 +106,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       url,
     }
     const newCart = [...cart, cartItem]
-    const newCartState = { cart: newCart, isPurchased: false }
+    const newCartState = { ...cartState, cart: newCart, isPurchased: false }
     setCartState(newCartState)
     localStorage.setItem('cart', JSON.stringify(newCartState))
 
@@ -118,7 +129,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         ? (newCart[searchItemIndex].quantity -= 1)
         : (newCart[searchItemIndex].quantity = 1)
 
-    const newCartState = { cart: newCart, isPurchased: false }
+    const newCartState = { ...cartState, cart: newCart, isPurchased: false }
     setCartState(newCartState)
     localStorage.setItem('cart', JSON.stringify(newCartState))
   }
@@ -136,31 +147,45 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     )
     newCart.splice(searchItemIndex, 1)
 
-    const newCartState = { cart: newCart, isPurchased: false }
+    const newCartState = { ...cartState, cart: newCart, isPurchased: false }
     setCartState(newCartState)
     localStorage.setItem('cart', JSON.stringify(newCartState))
   }
 
-  const [deliveryInfo, setDeliveryInfo] = useState({} as DeliveryInfoProps)
-  console.log(deliveryInfo)
+  // Delivery & Payment Contexts
 
-  function createDeliveryInfo(addressInfo: AddressInfoProps, zipValue: string) {
+  const [tempDeliveryInfo, setTempDeliveryInfo] = useState(
+    {} as DeliveryInfoProps,
+  )
+  // console.log(deliveryInfo)
+
+  function createTempDeliveryInfo(
+    addressInfo: AddressInfoProps | null,
+    zipValue: string | null,
+  ) {
     // const { zipCode, address } = info
-    const { city, neighborhood, state, street, number, other } = addressInfo
+    console.log('entrei')
+    if (addressInfo) {
+      // console.log('achei info')
+      const { city, neighborhood, state, street, number, other } = addressInfo
 
-    const newDeliveryInfo: DeliveryInfoProps = {
-      zipCode: zipValue,
-      address: {
-        street,
-        neighborhood,
-        number,
-        city,
-        state,
-        other,
-      },
-      deliveryPrice: 3.5,
+      const newTempDeliveryInfo: DeliveryInfoProps = {
+        zipCode: zipValue,
+        address: {
+          street,
+          neighborhood,
+          number,
+          city,
+          state,
+          other,
+        },
+        deliveryPrice: 3.5,
+      }
+      setTempDeliveryInfo(newTempDeliveryInfo)
+    } else {
+      // console.log('vazio demais')
+      setTempDeliveryInfo({ address: null, deliveryPrice: 0, zipCode: null })
     }
-    setDeliveryInfo(newDeliveryInfo)
   }
 
   const [paymentOptionValue, setPaymentOptionValue] = useState(
@@ -172,13 +197,17 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   function finishPurchase() {
+    console.log('compra finalizada!')
+
     const { cart } = cartState
     const cartFinishedPurchaseState = [...cart]
 
-    const newCartState = {
+    const newCartState: CartProps = {
       cart: [],
       isPurchased: true,
       purchaseAmount: totalCartAmount,
+      deliveryInformation: tempDeliveryInfo,
+      paymentOption: paymentOptionValue,
     }
     setCartState(newCartState)
     localStorage.setItem('cart', JSON.stringify(newCartState))
@@ -194,8 +223,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         updateCartQuantity,
         totalCartAmount,
         removeItemFromCart,
-        deliveryInfo,
-        createDeliveryInfo,
+        tempDeliveryInfo,
+        createTempDeliveryInfo,
         paymentOptionValue,
         createPaymentOption,
         finishPurchase,

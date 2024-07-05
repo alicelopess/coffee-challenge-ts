@@ -9,34 +9,59 @@ import {
 } from './style'
 import { useState } from 'react'
 
-// import { AddressInfoProps } from '../../../../contexts/CartContext'
 import { useCart } from '../../../../hooks/useCart'
 
-// interface AddressInfoProps {
-//   street: string
-//   number: string | null
-//   neighborhood: string
-//   city: string
-//   state: string
-//   other: string | null
-// }
-
 export function OrderDeliveryForm() {
-  const { deliveryInfo, createDeliveryInfo } = useCart()
-  // const [addressInfo, setAddressInfo] = useState({} as AddressInfoProps)
-  const { address } = deliveryInfo
+  const { tempDeliveryInfo, createTempDeliveryInfo } = useCart()
+  const { address } = tempDeliveryInfo
+  console.log('address:' + JSON.stringify(address))
+
+  // Inputs States
   const [zipValue, setZipValue] = useState('')
+  const [streetValue, setStreetValue] = useState<string | undefined>(undefined)
+  const [numberValue, setNumberValue] = useState<string | undefined>(undefined)
+  const [complementValue, setComplementValue] = useState<string | undefined>(
+    undefined,
+  )
+  const [cityValue, setCityValue] = useState<string | undefined>(undefined)
+  const [stateValue, setStateValue] = useState<string | undefined>(undefined)
+  const [neighborhoodValue, setNeighborhoodValue] = useState<
+    string | undefined
+  >(undefined)
 
   const handleChangeZipValue = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const zipValueInput = event.target.value
+
     if (zipValueInput.length === 8) {
       const response = await fetch(
         `https://brasilapi.com.br/api/cep/v1/${zipValueInput}`,
       )
       const data = await response.json()
-      createDeliveryInfo({ ...data, other: null, number: null }, zipValueInput)
+
+      setStreetValue(data.street)
+      setCityValue(data.city)
+      setStateValue(data.state)
+      setNeighborhoodValue(data.neighborhood)
+
+      const newDeliveryInfo = { ...data, other: null, number: null }
+
+      createTempDeliveryInfo(newDeliveryInfo, zipValueInput)
+      setZipValue(zipValueInput)
+    }
+
+    if (zipValueInput.length === 0) {
+      console.log('vazio')
+
+      setStreetValue('')
+      setCityValue('')
+      setStateValue('')
+      setNeighborhoodValue('')
+      setComplementValue('')
+      setNumberValue('')
+
+      createTempDeliveryInfo(null, null)
       setZipValue(zipValueInput)
     }
   }
@@ -54,6 +79,7 @@ export function OrderDeliveryForm() {
       </FormHeader>
       <InputsWrapper>
         <BaseInput
+          type="number"
           maxLength={8}
           placeholder="Cep"
           style={{ gridArea: 'zip' }}
@@ -62,66 +88,66 @@ export function OrderDeliveryForm() {
         <BaseInput
           placeholder="Rua"
           style={{ gridArea: 'street' }}
-          value={address ? address.street : undefined}
-          onChange={(event) => {
-            const newStreetValue = event.target.value
-            // setAddressInfo({ ...addressInfo, street: newStreetValue })
-            createDeliveryInfo({ ...address, street: newStreetValue }, zipValue)
-          }}
+          // value={address ? address.street : undefined}
+          value={streetValue}
+          disabled
         />
         <BaseInput
+          type="number"
           placeholder="Número"
           style={{ gridArea: 'number' }}
+          disabled={!zipValue}
+          value={numberValue}
           onChange={(event) => {
             const newNumberValue = event.target.value
+            setNumberValue(newNumberValue)
             // setAddressInfo({ ...addressInfo, number: newNumberValue })
-            createDeliveryInfo({ ...address, number: newNumberValue }, zipValue)
+            address &&
+              createTempDeliveryInfo(
+                { ...address, number: newNumberValue },
+                zipValue,
+              )
           }}
         />
         <BaseInput
           placeholder="Complemento"
           style={{ gridArea: 'other' }}
+          disabled={!zipValue}
+          value={complementValue}
           onChange={(event) => {
             const newComplementValue = event.target.value
+            setComplementValue(newComplementValue)
             // setAddressInfo({ ...addressInfo, other: newComplementValue })
-            createDeliveryInfo(
-              {
-                ...address,
-                other: newComplementValue,
-              },
-              zipValue,
-            )
+            address &&
+              createTempDeliveryInfo(
+                {
+                  ...address,
+                  other: newComplementValue,
+                },
+                zipValue,
+              )
           }}
         />
         <BaseInput
           placeholder="Bairro"
           style={{ gridArea: 'neighborhood' }}
-          value={address ? address.neighborhood : undefined}
-          // onChange={(event) => {
-          //   const newNeighborhoodValue = event.target.value
-          //   setAddressInfo({
-          //     ...addressInfo,
-          //     neighborhood: newNeighborhoodValue,
-          //   })
-          // }}
+          // value={address ? address.neighborhood : undefined}
+          value={neighborhoodValue}
+          disabled
         />
         <BaseInput
           placeholder="Cidade"
           style={{ gridArea: 'city' }}
-          value={address ? address.city : undefined}
-          // onChange={(event) => {
-          //   const newCityValue = event.target.value
-          //   setAddressInfo({ ...addressInfo, city: newCityValue })
-          // }}
+          // value={address ? address.city : undefined}
+          value={cityValue}
+          disabled
         />
         <BaseInput
           placeholder="UF"
           style={{ gridArea: 'state' }}
-          value={address ? address.state : undefined}
-          // onChange={(event) => {
-          //   const newStateValue = event.target.value
-          //   setAddressInfo({ ...addressInfo, state: newStateValue })
-          // }}
+          // value={address ? address.state : undefined}
+          value={stateValue}
+          disabled
         />
       </InputsWrapper>
     </FormContainer>

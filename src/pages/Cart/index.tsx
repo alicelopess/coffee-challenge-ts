@@ -1,5 +1,6 @@
 // import { NavLink } from 'react-router-dom'
 // import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../../components/buttons/PrimaryButton'
 import { CartCard } from '../../components/cards/CartCard'
 import { useCart } from '../../hooks/useCart'
@@ -22,12 +23,28 @@ import {
 } from './style'
 
 export function Cart() {
-  const { cartState, totalCartAmount, deliveryInfo } = useCart()
-  const { deliveryPrice } = deliveryInfo
+  const {
+    cartState,
+    totalCartAmount,
+    tempDeliveryInfo,
+    finishPurchase,
+    // paymentOptionValue,
+  } = useCart()
+
+  const navigate = useNavigate()
+
+  const { deliveryPrice } = tempDeliveryInfo
+  // const { option: paymentOption } = paymentOptionValue
   const { cart } = cartState
+
+  function navigateToCartSuccess() {
+    navigate('/cart/success')
+  }
 
   const handleFinishPurchase = () => {
     console.log(`Pedido Confirmado!`)
+    finishPurchase()
+    navigateToCartSuccess()
   }
 
   return (
@@ -52,7 +69,7 @@ export function Cart() {
                 return (
                   <CartItemWrapper key={item.id}>
                     <CartCard
-                      id={item.id}
+                      id={String(item.id)}
                       title={item.title}
                       price={String(item.price)}
                       url={item.url}
@@ -92,6 +109,7 @@ export function Cart() {
           </CartPriceInformationsWrapper>
           <CartActionsWrapper>
             <PrimaryButton
+              // isDisabled={zipCode !== null && paymentOption !== null}
               handleClick={handleFinishPurchase}
               background="yellow"
             >
