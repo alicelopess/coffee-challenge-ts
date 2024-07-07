@@ -17,17 +17,19 @@ export function OrderDeliveryForm() {
   console.log('address:' + JSON.stringify(address))
 
   // Inputs States
-  const [zipValue, setZipValue] = useState('')
-  const [streetValue, setStreetValue] = useState<string | undefined>(undefined)
-  const [numberValue, setNumberValue] = useState<string | undefined>(undefined)
-  const [complementValue, setComplementValue] = useState<string | undefined>(
-    undefined,
+  const [zipValue, setZipValue] = useState<string>(
+    tempDeliveryInfo.zipCode || '',
   )
-  const [cityValue, setCityValue] = useState<string | undefined>(undefined)
-  const [stateValue, setStateValue] = useState<string | undefined>(undefined)
-  const [neighborhoodValue, setNeighborhoodValue] = useState<
-    string | undefined
-  >(undefined)
+  const [streetValue, setStreetValue] = useState<string>(address?.street || '')
+  const [numberValue, setNumberValue] = useState<string>(address?.number || '')
+  const [complementValue, setComplementValue] = useState<string>(
+    address?.other || '',
+  )
+  const [cityValue, setCityValue] = useState<string>(address?.city || '')
+  const [stateValue, setStateValue] = useState<string>(address?.state || '')
+  const [neighborhoodValue, setNeighborhoodValue] = useState<string>(
+    address?.neighborhood || '',
+  )
 
   const handleChangeZipValue = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -45,7 +47,7 @@ export function OrderDeliveryForm() {
       setStateValue(data.state)
       setNeighborhoodValue(data.neighborhood)
 
-      const newDeliveryInfo = { ...data, other: null, number: null }
+      const newDeliveryInfo = { ...data }
 
       createTempDeliveryInfo(newDeliveryInfo, zipValueInput)
       setZipValue(zipValueInput)
@@ -79,9 +81,9 @@ export function OrderDeliveryForm() {
       </FormHeader>
       <InputsWrapper>
         <BaseInput
-          type="number"
           maxLength={8}
           placeholder="Cep"
+          defaultValue={zipValue}
           style={{ gridArea: 'zip' }}
           onChange={handleChangeZipValue}
         />
@@ -97,7 +99,7 @@ export function OrderDeliveryForm() {
           placeholder="Número"
           style={{ gridArea: 'number' }}
           disabled={!zipValue}
-          value={numberValue}
+          defaultValue={numberValue}
           onChange={(event) => {
             const newNumberValue = event.target.value
             setNumberValue(newNumberValue)
@@ -113,7 +115,7 @@ export function OrderDeliveryForm() {
           placeholder="Complemento"
           style={{ gridArea: 'other' }}
           disabled={!zipValue}
-          value={complementValue}
+          defaultValue={complementValue}
           onChange={(event) => {
             const newComplementValue = event.target.value
             setComplementValue(newComplementValue)

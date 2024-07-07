@@ -3,6 +3,7 @@ import { ButtonProps } from '../types'
 
 export const BaseButton = styled.button<{
   background: ButtonProps['background']
+  disabled: ButtonProps['isDisabled']
 }>`
   width: 100%;
   height: fit-content;
@@ -22,7 +23,14 @@ export const BaseButton = styled.button<{
 
   cursor: pointer;
 
-  ${({ background }) => {
+  ${({ background, disabled }) => {
+    if (disabled) {
+      return css`
+        background: ${(props) => props.theme['base-button']};
+        color: ${(props) => props.theme['base-text']};
+        cursor: not-allowed;
+      `
+    }
     if (background === 'default') {
       return css`
         background: ${(props) => props.theme['base-button']};

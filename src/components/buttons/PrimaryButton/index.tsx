@@ -5,11 +5,11 @@ export function PrimaryButton({
   children,
   background = 'default',
   handleClick,
-  // isDisabled,
+  isDisabled,
 }: ButtonProps) {
   return (
     <BaseButton
-      // disabled={isDisabled}
+      disabled={isDisabled}
       onClick={() => handleClick()}
       background={background}
     >

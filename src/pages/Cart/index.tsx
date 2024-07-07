@@ -1,5 +1,3 @@
-// import { NavLink } from 'react-router-dom'
-// import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from '../../components/buttons/PrimaryButton'
 import { CartCard } from '../../components/cards/CartCard'
@@ -28,13 +26,13 @@ export function Cart() {
     totalCartAmount,
     tempDeliveryInfo,
     finishPurchase,
-    // paymentOptionValue,
+    paymentOptionValue,
   } = useCart()
 
   const navigate = useNavigate()
 
-  const { deliveryPrice } = tempDeliveryInfo
-  // const { option: paymentOption } = paymentOptionValue
+  const { deliveryPrice, zipCode } = tempDeliveryInfo
+  const { option: paymentOption } = paymentOptionValue
   const { cart } = cartState
 
   function navigateToCartSuccess() {
@@ -46,6 +44,7 @@ export function Cart() {
     finishPurchase()
     navigateToCartSuccess()
   }
+  console.log(cart.length === 0, !zipCode, !paymentOption)
 
   return (
     <CartContainer>
@@ -86,22 +85,13 @@ export function Cart() {
                 Total de Itens
               </CartBasePriceDescription>
               <CartBasePriceAmount>R$ {totalCartAmount}</CartBasePriceAmount>
-              {/* <CartBasePriceAmount>R$ 29,70</CartBasePriceAmount> */}
             </CartPriceIndividualInformationWrapper>
-            {/* {cart.length !== 0 && (
-              <CartPriceIndividualInformationWrapper>
-                <CartBasePriceDescription>Entrega</CartBasePriceDescription>
-                <CartBasePriceAmount>R$ 3,50</CartBasePriceAmount>
-                <CartBasePriceAmount>R$ {deliveryPrice}</CartBasePriceAmount>
-              </CartPriceIndividualInformationWrapper>
-            )} */}
             <CartPriceIndividualInformationWrapper>
               <CartBasePriceDescription>Entrega</CartBasePriceDescription>
               <CartBasePriceAmount>R$ {deliveryPrice || 0}</CartBasePriceAmount>
             </CartPriceIndividualInformationWrapper>
             <CartPriceIndividualInformationWrapper>
               <CartTotalPriceAmount>Total</CartTotalPriceAmount>
-              {/* <CartTotalPriceAmount>R$ 33,20</CartTotalPriceAmount> */}
               <CartTotalPriceAmount>
                 R$ {totalCartAmount + (deliveryPrice || 0)}
               </CartTotalPriceAmount>
@@ -109,7 +99,7 @@ export function Cart() {
           </CartPriceInformationsWrapper>
           <CartActionsWrapper>
             <PrimaryButton
-              // isDisabled={zipCode !== null && paymentOption !== null}
+              isDisabled={cart.length === 0 || !zipCode || !paymentOption}
               handleClick={handleFinishPurchase}
               background="yellow"
             >

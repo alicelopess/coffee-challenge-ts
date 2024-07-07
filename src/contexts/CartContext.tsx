@@ -24,11 +24,11 @@ export interface PaymentOptionProps {
 
 export interface AddressInfoProps {
   street: string
-  number?: string | null
+  number?: string
   neighborhood: string
   city: string
   state: string
-  other?: string | null
+  other?: string
 }
 
 export interface DeliveryInfoProps {
@@ -54,8 +54,8 @@ interface CartContextType {
   totalCartAmount: number
   tempDeliveryInfo: DeliveryInfoProps
   createTempDeliveryInfo: (
-    addressInfo: AddressInfoProps,
-    zivValue: string,
+    addressInfo: AddressInfoProps | null,
+    zipValue: string | null,
   ) => void
   paymentOptionValue: PaymentOptionProps
   createPaymentOption: (option: string, optionTitle: string) => void
