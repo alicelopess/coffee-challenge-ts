@@ -5,7 +5,7 @@ export const ProductData = [
     description: 'O tradicional café feito com água quente e grãos moídos',
     price: 9.9,
     type: 'Tradicional',
-    url: 'public/coffees/expresso-tradicional.svg',
+    url: '/coffees/expresso-tradicional.svg',
     quantity: 1,
   },
   {
@@ -14,7 +14,7 @@ export const ProductData = [
     description: 'Expresso diluído, menos intenso que o tradicional',
     price: 9.9,
     type: 'Tradicional',
-    url: 'public/coffees/expresso-americano.svg',
+    url: '/coffees/expresso-americano.svg',
     quantity: 1,
   },
   {
@@ -23,7 +23,7 @@ export const ProductData = [
     description: 'Café expresso tradicional com espuma cremosa',
     price: 9.9,
     type: 'Tradicional',
-    url: 'public/coffees/expresso-cremoso.svg',
+    url: '/coffees/expresso-cremoso.svg',
     quantity: 1,
   },
   {
@@ -32,7 +32,7 @@ export const ProductData = [
     description: 'Bebida preparada com café expresso e cubos de gelo',
     price: 9.9,
     type: 'Tradicional',
-    url: 'public/coffees/expresso-gelado.svg',
+    url: '/coffees/expresso-gelado.svg',
     quantity: 1,
   },
   {
@@ -41,7 +41,7 @@ export const ProductData = [
     description: 'Café expresso com o dobro de leite e espuma cremosa',
     price: 9.9,
     type: 'Tradicional',
-    url: 'public/coffees/latte.svg',
+    url: '/coffees/latte.svg',
     quantity: 1,
   },
   {
@@ -50,7 +50,7 @@ export const ProductData = [
     description: 'Bebida preparada com café expresso e cubos de gelo',
     price: 9.9,
     type: 'Tradicional',
-    url: 'public/coffees/cafe-com-leite.svg',
+    url: '/coffees/cafe-com-leite.svg',
     quantity: 1,
   },
   {
@@ -59,7 +59,7 @@ export const ProductData = [
     description: 'Bebida com canela feita de doses de café, leite e espuma',
     price: 9.9,
     type: 'Doce',
-    url: 'public/coffees/capuccino.svg',
+    url: '/coffees/capuccino.svg',
     quantity: 1,
   },
   {
@@ -69,7 +69,7 @@ export const ProductData = [
       'Café expresso misturado com um pouco de leite quente e espuma',
     price: 9.9,
     type: 'Doce',
-    url: 'public/coffees/macchiato.svg',
+    url: '/coffees/macchiato.svg',
     quantity: 1,
   },
   {
@@ -78,7 +78,7 @@ export const ProductData = [
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
     price: 9.9,
     type: 'Doce',
-    url: 'public/coffees/mocaccino.svg',
+    url: '/coffees/mocaccino.svg',
     quantity: 1,
   },
   {
@@ -87,7 +87,7 @@ export const ProductData = [
     description: 'Bebida feita com chocolate dissolvido no leite quente e café',
     price: 9.9,
     type: 'Doce',
-    url: 'public/coffees/chocolate-quente.svg',
+    url: '/coffees/chocolate-quente.svg',
     quantity: 1,
   },
   {
@@ -97,7 +97,7 @@ export const ProductData = [
       'Drink gelado de café expresso com rum, creme de leite e hortelã',
     price: 9.9,
     type: 'Especial',
-    url: 'public/coffees/cafe-cubano.svg',
+    url: '/coffees/cafe-cubano.svg',
     quantity: 1,
   },
   {
@@ -106,7 +106,7 @@ export const ProductData = [
     description: 'Bebida adocicada preparada com café e leite de coco',
     price: 9.9,
     type: 'Especial',
-    url: 'public/coffees/cafe-havaiano.svg',
+    url: '/coffees/cafe-havaiano.svg',
     quantity: 1,
   },
   {
@@ -115,7 +115,7 @@ export const ProductData = [
     description: 'Bebida preparada com grãos de café árabe e especiarias',
     price: 9.9,
     type: 'Especial',
-    url: 'public/coffees/cafe-arabe.svg',
+    url: '/coffees/cafe-arabe.svg',
     quantity: 1,
   },
   {
@@ -124,7 +124,7 @@ export const ProductData = [
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
     price: 9.9,
     type: 'Especial',
-    url: 'public/coffees/cafe-irlandes.svg',
+    url: '/coffees/cafe-irlandes.svg',
     quantity: 1,
   },
 ]

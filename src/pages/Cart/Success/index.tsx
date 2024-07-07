@@ -12,13 +12,12 @@ import {
 } from './style'
 import cartSuccessImage from '../../../assets/cartSuccessImage.svg'
 import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
-// import { useCart } from '../../../hooks/useCart'
+import { useCart } from '../../../hooks/useCart'
 
 export function Success() {
-  // const { paymentOptionValue, deliveryInfo } = useCart()
-  // const { address } = deliveryInfo
-  // console.log(address)
-  // const { title: paymentTitle } = paymentOptionValue
+  const { cartState } = useCart()
+  const { deliveryInformation, paymentOption } = cartState
+  const { address } = deliveryInformation!
 
   return (
     <SuccessContainer>
@@ -37,9 +36,12 @@ export function Success() {
               </SuccessDeliveryInformationIcon>
               <SuccessDeliveryInformationText>
                 <span>
-                  Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                  Entrega em{' '}
+                  <strong>
+                    {address?.street}, {address?.number}
+                  </strong>
                 </span>
-                Farrapos - Porto Alegre, RS
+                {address?.neighborhood} - {address?.city}, {address?.state}
               </SuccessDeliveryInformationText>
             </SuccessDeliveryInformation>
             <SuccessDeliveryInformation>
@@ -57,7 +59,7 @@ export function Success() {
               </SuccessDeliveryInformationIcon>
               <SuccessDeliveryInformationText>
                 Pagamento na entrega
-                <strong>Cartão de Crédito</strong>
+                <strong>{paymentOption?.title}</strong>
               </SuccessDeliveryInformationText>
             </SuccessDeliveryInformation>
           </SuccessDeliveryInformations>
