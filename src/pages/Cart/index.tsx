@@ -19,6 +19,7 @@ import {
   CartTotalPriceAmount,
   OrderInformationContainer,
 } from './style'
+import emptyCart from '../../assets/emptyCart.png'
 
 export function Cart() {
   const {
@@ -61,6 +62,7 @@ export function Cart() {
           <CartItemsWrapper>
             {cart.length === 0 ? (
               <CartEmptyStateWrapper>
+                <img src={emptyCart} alt="" />
                 <span>Você ainda não tem cafés selecionados!</span>
               </CartEmptyStateWrapper>
             ) : (

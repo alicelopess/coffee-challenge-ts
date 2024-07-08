@@ -10,6 +10,11 @@ export const HeaderContainer = styled.header`
   align-items: center;
   flex-wrap: wrap;
 
+  position: sticky;
+  top: 0;
+  background: ${(props) => props.theme.background};
+  z-index: 10;
+
   @media screen and (max-width: 1392px) {
     padding: 2rem 128px;
     /* padding: 0 96px; */

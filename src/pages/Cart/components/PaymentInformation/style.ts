@@ -7,6 +7,9 @@ export const PaymentInfoContainer = styled.div`
   gap: 2rem;
   padding: 40px;
 
+  background: ${(props) => props.theme['base-card']};
+  border-radius: 6px;
+
   @media screen and (max-width: 1440px) {
     min-width: 420px;
     flex: 1;

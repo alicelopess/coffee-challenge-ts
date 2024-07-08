@@ -1,4 +1,4 @@
-import { CurrencyDollar } from '@phosphor-icons/react'
+import { Bank, CreditCard, CurrencyDollar, Money } from '@phosphor-icons/react'
 import {
   PaymentInfoContainer,
   PaymentInfoHeader,
@@ -13,17 +13,17 @@ const paymentOptions = [
   {
     option: 'credit',
     title: 'Cartão de Crédito',
-    icon: 'some',
+    icon: <CreditCard size={16} color="#8047F8" />,
   },
   {
     option: 'debit',
     title: 'Cartão de Débito',
-    icon: 'some',
+    icon: <Bank size={16} color="#8047F8" />,
   },
   {
     option: 'cash',
     title: 'Dinheiro',
-    icon: 'some',
+    icon: <Money size={16} color="#8047F8" />,
   },
   // {
   //   option: 'pix',
@@ -63,6 +63,7 @@ export function PaymentInformation() {
                 // console.log(item)
                 // console.log(index)
               }}
+              selectorIcon={item.icon}
             >
               {item.title}
             </CartSelector>

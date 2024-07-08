@@ -6,6 +6,9 @@ export const FormContainer = styled.div`
   flex-direction: column;
   gap: 2rem;
   padding: 40px;
+
+  background: ${(props) => props.theme['base-card']};
+  border-radius: 6px;
 `
 export const FormHeader = styled.div`
   width: 100%;
@@ -34,52 +37,3 @@ export const InputsWrapper = styled.div`
     'neighborhood neighborhood neighborhood neighborhood city city city city city state';
   gap: 12px;
 `
-
-export const BaseInput = styled.input`
-  outline: none;
-  background: ${(props) => props.theme['base-input']};
-  color: ${(props) => props.theme['base-text']};
-  border: 1px solid ${(props) => props.theme['base-button']};
-  border-radius: 4px;
-
-  width: 100%;
-  height: fit-content;
-  padding: 12px;
-
-  font-size: 14px;
-
-  /* display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 4px; */
-
-  &:focus {
-    border: 1px solid ${(props) => props.theme['yellow-dark']};
-  }
-  &::placeholder {
-    font-size: 14px;
-    color: ${(props) => props.theme['base-label']};
-  }
-`
-
-// export const SendAddressButton = styled.button`
-//   grid-area: 'addressButton';
-
-//   width: 100%;
-//   height: fit-content;
-//   padding: 12px 8px;
-//   border: none;
-//   border-radius: 6px;
-
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   gap: 4px;
-
-//   font-family: 'Roboto', sans-serif;
-//   font-size: 14px;
-//   font-weight: 700;
-//   text-transform: uppercase;
-
-//   cursor: pointer;
-// `

@@ -1,6 +1,6 @@
 import { MapPinLine } from '@phosphor-icons/react'
 import {
-  BaseInput,
+  // BaseInput,
   FormContainer,
   FormHeader,
   FormHeaderSubtitle,
@@ -10,6 +10,7 @@ import {
 import { useState } from 'react'
 
 import { useCart } from '../../../../hooks/useCart'
+import { BaseInput } from '../../../../components/inputs/BaseInput'
 
 export function OrderDeliveryForm() {
   const { tempDeliveryInfo, createTempDeliveryInfo } = useCart()
@@ -99,7 +100,7 @@ export function OrderDeliveryForm() {
           placeholder="Número"
           style={{ gridArea: 'number' }}
           disabled={!zipValue}
-          defaultValue={numberValue}
+          value={numberValue}
           onChange={(event) => {
             const newNumberValue = event.target.value
             setNumberValue(newNumberValue)
@@ -112,10 +113,11 @@ export function OrderDeliveryForm() {
           }}
         />
         <BaseInput
+          labelText="Opcional"
           placeholder="Complemento"
           style={{ gridArea: 'other' }}
           disabled={!zipValue}
-          defaultValue={complementValue}
+          value={complementValue}
           onChange={(event) => {
             const newComplementValue = event.target.value
             setComplementValue(newComplementValue)

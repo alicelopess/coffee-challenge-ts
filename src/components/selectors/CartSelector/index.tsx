@@ -1,9 +1,9 @@
-import { CreditCard } from '@phosphor-icons/react'
 import { SelectorProps } from '../types'
 import { Selector, SelectorText } from './style'
 
 export function CartSelector({
   children,
+  selectorIcon,
   handleClick,
   selectionOption,
   isSelected,
@@ -14,7 +14,7 @@ export function CartSelector({
       isSelected={isSelected}
       onClick={handleClick}
     >
-      <CreditCard size={16} color="#8047F8" />
+      {selectorIcon}
       <SelectorText>{children}</SelectorText>
     </Selector>
   )

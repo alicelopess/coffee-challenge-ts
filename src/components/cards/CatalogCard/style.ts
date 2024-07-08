@@ -14,14 +14,8 @@ export const CatalogCardContainer = styled.div`
   justify-content: center;
   gap: 33px;
 
-  background: transparent;
-
-  /* Glassmorphism */
-  /* background: rgba(255, 255, 255, 0.62);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10.5px);
-  -webkit-backdrop-filter: blur(10.5px);
-  border: 1px solid rgba(255, 255, 255, 0.88); */
+  /* background: transparent; */
+  background: ${(props) => props.theme['base-card']};
 `
 export const CatalogCardImg = styled.img`
   width: 120px;

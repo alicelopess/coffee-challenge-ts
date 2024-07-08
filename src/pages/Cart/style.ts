@@ -58,6 +58,9 @@ export const CartInformationContainer = styled.div`
   gap: 24px;
   grid-template-rows: auto 1fr auto;
 
+  background: ${(props) => props.theme['base-card']};
+  border-radius: 6px 44px 6px 44px;
+
   @media screen and (max-width: 1440px) {
     width: 100%;
     /* grid-template-rows: auto auto;
@@ -76,23 +79,25 @@ export const CartItemsWrapper = styled.div`
 `
 export const CartEmptyStateWrapper = styled.div`
   width: 100%;
+  padding: 0 24px 24px;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 0.5rem;
   overflow: hidden;
 
   span {
     text-align: center;
-    font-size: 1.5rem;
-    font-family: 'Baloo 2', sans-serif;
-    font-family: 800;
-    color: ${(props) => props.theme['yellow-dark']};
+    font-size: 1rem;
+    /* font-family: 'Baloo 2', sans-serif; */
+    /* font-family: 800; */
+    color: ${(props) => props.theme['base-label']};
   }
   img {
-    width: 2rem;
-    height: 2rem;
+    width: 8rem;
+    height: 8rem;
   }
 `
 export const CartItemWrapper = styled.div`

@@ -8,6 +8,7 @@ export const Selector = styled.div<{
 }>`
   width: 178.67px;
   padding: 1rem;
+  border: 1px solid transparent;
   border-radius: 6px;
 
   display: flex;

@@ -7,4 +7,5 @@ export interface SelectorProps {
   handleClick: () => void
   selectionOption: string
   isSelected: boolean
+  selectorIcon?: ReactNode
 }
