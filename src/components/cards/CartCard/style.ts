@@ -21,7 +21,7 @@ export const CartCardImg = styled.img`
   width: 64px;
   height: 64px;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `
 export const CartCardInfo = styled.div`
   display: flex;

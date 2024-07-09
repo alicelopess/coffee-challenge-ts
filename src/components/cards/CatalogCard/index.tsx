@@ -16,6 +16,7 @@ import { ProductProps } from './type'
 import { useState } from 'react'
 import { CartItem } from '../../../contexts/CartContext'
 import { useCart } from '../../../hooks/useCart'
+import { formatPrice } from '../../../helpers/formatPrice'
 
 export function CatalogCard({ ...props }: ProductProps) {
   const { createCartItem } = useCart()
@@ -51,14 +52,16 @@ export function CatalogCard({ ...props }: ProductProps) {
     <CatalogCardContainer>
       <CatalogCardImg src={props.url} alt="" />
       <CatalogCardInfo>
-        <TagSelector>{props.type}</TagSelector>
+        <TagSelector handleClick={() => {}}>{props.type}</TagSelector>
         <CatalogCardTitle>{props.title}</CatalogCardTitle>
         <CatalogCardDescription>{props.description}</CatalogCardDescription>
       </CatalogCardInfo>
       <CatalogCardActions>
         <div>
           <CatalogCardPriceCurrency>R$</CatalogCardPriceCurrency>
-          <CatalogCardPriceAmount>{props.price}</CatalogCardPriceAmount>
+          <CatalogCardPriceAmount>
+            {formatPrice(parseFloat(props.price))}
+          </CatalogCardPriceAmount>
         </div>
         <CounterInput
           inputValue={counterInputValue}

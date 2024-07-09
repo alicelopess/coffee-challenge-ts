@@ -8,6 +8,7 @@ export function SecondaryButton({
 }: ButtonProps) {
   return (
     <SecondaryButtonStyled
+      disabled={false}
       onClick={() => handleClick()}
       background={background}
     >

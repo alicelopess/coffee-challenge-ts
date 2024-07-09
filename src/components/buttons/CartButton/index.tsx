@@ -1,9 +1,19 @@
 import { ButtonProps } from '../types'
 import { CartButtonStyled } from './style'
 
-export function CartButton({ background, quantity, children }: ButtonProps) {
+export function CartButton({
+  background,
+  quantity,
+  children,
+  handleClick,
+}: ButtonProps) {
   return (
-    <CartButtonStyled background={background} quantity={quantity}>
+    <CartButtonStyled
+      disabled={false}
+      background={background}
+      quantity={quantity}
+      onClick={handleClick}
+    >
       {children}
     </CartButtonStyled>
   )

@@ -13,6 +13,7 @@ import { CounterInput } from '../../inputs/CounterInput'
 import { ProductInCartProps } from './type'
 import { useState } from 'react'
 import { useCart } from '../../../hooks/useCart'
+import { formatPrice } from '../../../helpers/formatPrice'
 
 export function CartCard({
   id,
@@ -66,7 +67,7 @@ export function CartCard({
           </CartCardActions>
         </div>
       </CartCardInfo>
-      <CartCardPrice>R$ {price}</CartCardPrice>
+      <CartCardPrice>R$ {formatPrice(parseFloat(price))}</CartCardPrice>
     </CartCardContainer>
   )
 }

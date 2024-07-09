@@ -20,6 +20,7 @@ import {
   OrderInformationContainer,
 } from './style'
 import emptyCart from '../../assets/emptyCart.png'
+import { formatPrice } from '../../helpers/formatPrice'
 
 export function Cart() {
   const {
@@ -86,16 +87,20 @@ export function Cart() {
               <CartBasePriceDescription>
                 Total de Itens
               </CartBasePriceDescription>
-              <CartBasePriceAmount>R$ {totalCartAmount}</CartBasePriceAmount>
+              <CartBasePriceAmount>
+                R$ {formatPrice(totalCartAmount)}
+              </CartBasePriceAmount>
             </CartPriceIndividualInformationWrapper>
             <CartPriceIndividualInformationWrapper>
               <CartBasePriceDescription>Entrega</CartBasePriceDescription>
-              <CartBasePriceAmount>R$ {deliveryPrice || 0}</CartBasePriceAmount>
+              <CartBasePriceAmount>
+                R$ {formatPrice(deliveryPrice || 0)}
+              </CartBasePriceAmount>
             </CartPriceIndividualInformationWrapper>
             <CartPriceIndividualInformationWrapper>
               <CartTotalPriceAmount>Total</CartTotalPriceAmount>
               <CartTotalPriceAmount>
-                R$ {totalCartAmount + (deliveryPrice || 0)}
+                R$ {formatPrice(totalCartAmount + (deliveryPrice || 0))}
               </CartTotalPriceAmount>
             </CartPriceIndividualInformationWrapper>
           </CartPriceInformationsWrapper>

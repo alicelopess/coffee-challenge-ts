@@ -26,7 +26,7 @@ export function Header() {
           <span>Porto Alegre, RS</span>
         </LocationPickerWrapper>
         <NavLink to="/cart" title="Cart">
-          <CartButton quantity={cart.length}>
+          <CartButton handleClick={() => {}} quantity={cart.length}>
             <ShoppingCart size={22} weight="fill" />
           </CartButton>
         </NavLink>

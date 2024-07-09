@@ -1,12 +1,5 @@
 import { ReactNode, createContext, useState } from 'react'
 
-// interface Product {
-//   id: string
-//   title: string
-//   price: number
-//   quantity: number
-// }
-
 export interface CartItem {
   id?: string
   productId: string
@@ -46,7 +39,6 @@ interface CartProps {
 }
 
 interface CartContextType {
-  // cart: CartItem[]
   cartState: CartProps
   createCartItem: (product: CartItem) => void
   updateCartQuantity: (id: string, operation: 'increment' | 'decrement') => void
@@ -102,7 +94,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       title,
       price,
       quantity,
-      // amount,
       url,
     }
     const newCart = [...cart, cartItem]
@@ -157,7 +148,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const [tempDeliveryInfo, setTempDeliveryInfo] = useState(
     {} as DeliveryInfoProps,
   )
-  // console.log(deliveryInfo)
 
   function createTempDeliveryInfo(
     addressInfo: AddressInfoProps | null,

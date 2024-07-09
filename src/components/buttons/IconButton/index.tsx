@@ -3,7 +3,11 @@ import { IconButtonStyled } from './style'
 
 export function IconButton({ children, background, handleClick }: ButtonProps) {
   return (
-    <IconButtonStyled onClick={() => handleClick()} background={background}>
+    <IconButtonStyled
+      disabled={false}
+      onClick={() => handleClick()}
+      background={background}
+    >
       {children}
     </IconButtonStyled>
   )
