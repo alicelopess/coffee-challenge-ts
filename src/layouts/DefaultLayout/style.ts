@@ -29,4 +29,8 @@ export const LayoutMainContentContainer = styled.div`
   /* @media screen and (max-width: 1246px) {
     padding: 0 32px;
   } */
+
+  @media screen and (max-width: 1374px) {
+    padding: 0 32px;
+  }
 `

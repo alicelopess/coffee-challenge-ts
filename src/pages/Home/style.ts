@@ -1,11 +1,6 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
-  /* background: greenyellow; */
-  /* width: 100%; */
-  /* padding: 0 10rem; */
-  /* position: relative; */
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,6 +87,15 @@ export const IntroSectionMainContent = styled.div`
     align-items: center;
     text-align: center;
   }
+
+  @media screen and (max-width: 856px) {
+    h1 {
+      font-size: 2rem; //32px
+    }
+    span {
+      font-size: 1rem; //16px
+    }
+  }
 `
 
 export const IntroSectionImage = styled.img`
@@ -149,4 +153,8 @@ export const IntroSectionSecondaryContentItem = styled.div`
     line-height: 130%;
     color: ${(props) => props.theme['base-text']};
   }
+
+  /* @media screen and (max-width: 856px) {
+
+  } */
 `

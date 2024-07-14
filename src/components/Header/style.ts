@@ -43,6 +43,9 @@ export const HeaderContainer = styled.header`
   /* @media screen and (max-width: 650px) {
     padding: 2rem 64px;
   } */
+  @media screen and (max-width: 1374px) {
+    padding: 2rem 32px;
+  }
 `
 
 export const LogoWrapper = styled.div`
