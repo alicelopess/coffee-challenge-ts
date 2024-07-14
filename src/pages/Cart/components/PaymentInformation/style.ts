@@ -10,9 +10,19 @@ export const PaymentInfoContainer = styled.div`
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px;
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1247px) {
     min-width: 420px;
-    flex: 1;
+    width: fit-content;
+    align-items: center;
+
+    /* flex: 1; */
+  }
+  @media screen and (max-width: 980px) {
+    min-width: auto;
+    width: 100%;
+  }
+  @media screen and (max-width: 496px) {
+    padding: 32px;
   }
 `
 export const PaymentInfoHeader = styled.div`
@@ -41,17 +51,12 @@ export const PaymentOptionsContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 1440px) {
-    /* min-width: 178.67px;
-    width: 100%; */
+  @media screen and (max-width: 1247px) {
+    min-width: 178.67px;
+    width: 100%;
+    /* width: 178.67px; */
     /* width: fit-content; */
 
-    flex-wrap: wrap;
-  }
-  @media screen and (max-width: 1200px) {
-    flex-wrap: nowrap;
-  }
-  @media screen and (max-width: 992px) {
     flex-wrap: wrap;
   }
 `

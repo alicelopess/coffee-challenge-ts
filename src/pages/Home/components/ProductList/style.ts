@@ -10,7 +10,7 @@ export const ProductListContainer = styled.section`
   /* align-items: center; */
   gap: 54px;
 
-  background-color: yellow;
+  /* background-color: yellow; */
 
   @media screen and (max-width: 1392px) {
     align-items: center;
@@ -40,10 +40,14 @@ export const ProductListItems = styled.div`
 
   /* background-color: blueviolet; */
 
-  /* @media screen and (max-width: 1439px) {
-    grid-template-columns: repeat(3, auto);
-    gap: 40px 16px;
-  } */
+  @media screen and (max-width: 1248px) {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  @media screen and (max-width: 856px) {
+    grid-template-columns: repeat(1, auto);
+  }
+
   /* @media screen and (max-width: 1328px) {
     grid-template-columns: repeat(3, auto);
     gap: 40px 32px;

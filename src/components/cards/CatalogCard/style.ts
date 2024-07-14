@@ -29,7 +29,7 @@ export const CatalogCardContainer = styled.div<{
     if (cardOrientation === 'horizontal') {
       return css`
         height: 140px;
-        width: fit-content;
+        width: 100%;
         padding: 1rem 1rem 1rem 7.25rem;
 
         align-items: flex-start;

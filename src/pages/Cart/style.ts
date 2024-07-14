@@ -7,14 +7,13 @@ export const CartContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
   justify-content: flex-start;
-  /* justify-content: space-between; */
   gap: 2rem;
 
   background: transparent;
+  /* background-color: red; */
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1247px) {
     width: fit-content;
     margin: auto;
     flex-direction: row;
@@ -28,13 +27,15 @@ export const OrderInformationContainer = styled.div`
   flex-direction: column;
   gap: 12px;
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1247px) {
     width: 100%;
     flex-direction: row;
+    padding-bottom: 2rem;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 980px) {
     width: 100%;
     flex-direction: column;
+    padding-bottom: 2rem;
   }
 `
 export const BaseCartTitle = styled.span`
@@ -50,7 +51,6 @@ export const BaseCartTitle = styled.span`
   margin-bottom: 1rem;
 `
 export const CartInformationContainer = styled.div`
-  /* padding: 40px; */
   width: 448px;
   padding: 40px 16px;
 
@@ -61,10 +61,11 @@ export const CartInformationContainer = styled.div`
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 44px 6px 44px;
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1247px) {
     width: 100%;
-    /* grid-template-rows: auto auto;
-    grid-template-columns: auto auto; */
+  }
+  @media screen and (max-width: 496px) {
+    padding: 40px 8px;
   }
 `
 export const CartItemsWrapper = styled.div`
@@ -84,15 +85,12 @@ export const CartEmptyStateWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   gap: 0.5rem;
   overflow: hidden;
 
   span {
     text-align: center;
     font-size: 1rem;
-    /* font-family: 'Baloo 2', sans-serif; */
-    /* font-family: 800; */
     color: ${(props) => props.theme['base-label']};
   }
   img {
@@ -103,8 +101,6 @@ export const CartEmptyStateWrapper = styled.div`
 export const CartItemWrapper = styled.div`
   width: 100%;
   padding: 0 24px 24px;
-  /* padding-bottom: 24px; */
-  /* margin: 0 8px; */
   border-bottom: 1px solid ${(porps) => porps.theme['base-button']};
 `
 export const CartPriceInformationsWrapper = styled.div`

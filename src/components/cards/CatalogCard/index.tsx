@@ -10,7 +10,7 @@ import { CardImage } from './components/CardImage'
 import { CardInfo } from './components/CardInfo'
 import { CardPrice } from './components/CardPrice'
 
-export function CatalogCardVertical({
+export function CatalogCard({
   cardOrientation,
   imageSize,
   ...props

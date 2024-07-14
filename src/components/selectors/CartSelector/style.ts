@@ -19,15 +19,9 @@ export const Selector = styled.div<{
 
   background: ${(props) => props.theme['base-button']};
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1247px) {
     min-width: 178.67px;
     width: 100%;
-    justify-content: center;
-  }
-  @media screen and (max-width: 1200px) {
-    justify-content: flex-start;
-  }
-  @media screen and (max-width: 992px) {
     justify-content: center;
   }
 

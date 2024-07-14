@@ -7,6 +7,6 @@ export const formatPrice = (price: number) => {
   }).format(price)
 
   const priceWithoutCurrency = newPrice.replace('R$', '').trim()
-  console.log(priceWithoutCurrency)
+  // console.log(priceWithoutCurrency)
   return String(priceWithoutCurrency)
 }

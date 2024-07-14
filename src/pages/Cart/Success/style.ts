@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const SuccessContainer = styled.div`
-  /* width: 100%; */
-  /* margin: auto; */
   height: 100vh;
   padding-top: 5rem; //80px
   /* padding: 80px 160px; */

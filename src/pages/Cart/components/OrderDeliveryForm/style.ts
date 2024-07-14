@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const FormContainer = styled.div`
   width: 100%;
+  min-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -9,6 +10,13 @@ export const FormContainer = styled.div`
 
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px;
+
+  @media screen and (max-width: 980px) {
+    min-width: auto;
+  }
+  @media screen and (max-width: 496px) {
+    padding: 32px;
+  }
 `
 export const FormHeader = styled.div`
   width: 100%;
