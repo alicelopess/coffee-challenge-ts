@@ -1,11 +1,10 @@
-import { CatalogCard } from '../../../../components/cards/CatalogCard'
+import { CatalogCardVertical } from '../../../../components/cards/CatalogCard'
 import {
   ProductListContainer,
   ProductListItems,
   ProductListTitle,
 } from './style'
 import { ProductData } from '../../../../services/dbMock'
-// import { ProductProps } from '../cards/CatalogCard/type'
 
 export function ProductList() {
   return (
@@ -13,7 +12,7 @@ export function ProductList() {
       <ProductListTitle>Nossos cafés</ProductListTitle>
       <ProductListItems>
         {ProductData.map((product, index) => (
-          <CatalogCard
+          <CatalogCardVertical
             key={index}
             id={String(product.id)}
             title={product.name}
@@ -21,6 +20,8 @@ export function ProductList() {
             price={String(product.price)}
             type={product.type}
             url={product.url}
+            cardOrientation="vertical"
+            imageSize="image-lg"
           />
         ))}
       </ProductListItems>

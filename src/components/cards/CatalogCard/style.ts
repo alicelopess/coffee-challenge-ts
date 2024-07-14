@@ -1,10 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { CatalogCardProps } from './type'
 
-export const CatalogCardContainer = styled.div`
+export const CatalogCardContainer = styled.div<{
+  cardOrientation: CatalogCardProps['cardOrientation']
+}>`
   width: 256px;
   height: 310px;
   border-radius: 6px 36px 6px 36px;
   /* border: 1px solid red; */
+
+  border: 1px solid var ${(props) => props.theme['base-button']};
+  border-radius: 6px 36px 6px 36px;
+  box-shadow: 0 2px 8px 0 rgb(0, 0, 0 / 4%);
+
   padding: 112px 20px 20px;
   position: relative;
 
@@ -16,6 +24,19 @@ export const CatalogCardContainer = styled.div`
 
   /* background: transparent; */
   background: ${(props) => props.theme['base-card']};
+
+  ${({ cardOrientation }) => {
+    if (cardOrientation === 'horizontal') {
+      return css`
+        height: 140px;
+        width: fit-content;
+        padding: 1rem 1rem 1rem 7.25rem;
+
+        align-items: flex-start;
+        gap: 0.5rem;
+      `
+    }
+  }}
 `
 export const CatalogCardImg = styled.img`
   width: 120px;

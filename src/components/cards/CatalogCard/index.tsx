@@ -1,24 +1,20 @@
 import { ShoppingCartSimple } from '@phosphor-icons/react'
 import { IconButton } from '../../buttons/IconButton'
-import { TagSelector } from '../../selectors/Tag'
-import {
-  CatalogCardActions,
-  CatalogCardContainer,
-  CatalogCardDescription,
-  CatalogCardImg,
-  CatalogCardInfo,
-  CatalogCardPriceAmount,
-  CatalogCardPriceCurrency,
-  CatalogCardTitle,
-} from './style'
+import { CatalogCardActions, CatalogCardContainer } from './style'
 import { CounterInput } from '../../inputs/CounterInput'
-import { ProductProps } from './type'
+import { CatalogCardProps } from './type'
 import { useState } from 'react'
 import { CartItem } from '../../../contexts/CartContext'
 import { useCart } from '../../../hooks/useCart'
-import { formatPrice } from '../../../helpers/formatPrice'
+import { CardImage } from './components/CardImage'
+import { CardInfo } from './components/CardInfo'
+import { CardPrice } from './components/CardPrice'
 
-export function CatalogCard({ ...props }: ProductProps) {
+export function CatalogCardVertical({
+  cardOrientation,
+  imageSize,
+  ...props
+}: CatalogCardProps) {
   const { createCartItem } = useCart()
 
   const [counterInputValue, setCounterInputValue] = useState(1)
@@ -26,6 +22,7 @@ export function CatalogCard({ ...props }: ProductProps) {
     setCounterInputValue(counterInputValue + 1)
   const handleDecrementCounterValue = () =>
     setCounterInputValue(counterInputValue - 1)
+
   const handleManualInputValueChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -49,20 +46,22 @@ export function CatalogCard({ ...props }: ProductProps) {
   }
 
   return (
-    <CatalogCardContainer>
-      <CatalogCardImg src={props.url} alt="" />
-      <CatalogCardInfo>
-        <TagSelector handleClick={() => {}}>{props.type}</TagSelector>
-        <CatalogCardTitle>{props.title}</CatalogCardTitle>
-        <CatalogCardDescription>{props.description}</CatalogCardDescription>
-      </CatalogCardInfo>
+    <CatalogCardContainer cardOrientation={cardOrientation}>
+      <CardImage
+        imageSize={imageSize}
+        cardOrientation={cardOrientation}
+        src={props.url}
+      />
+
+      <CardInfo
+        description={props.description}
+        title={props.title}
+        productType={props.type}
+        cardOrientation={cardOrientation}
+      />
+
       <CatalogCardActions>
-        <div>
-          <CatalogCardPriceCurrency>R$</CatalogCardPriceCurrency>
-          <CatalogCardPriceAmount>
-            {formatPrice(parseFloat(props.price))}
-          </CatalogCardPriceAmount>
-        </div>
+        <CardPrice price={props.price} />
         <CounterInput
           inputValue={counterInputValue}
           handleIncrement={handleIncrementCounterValue}

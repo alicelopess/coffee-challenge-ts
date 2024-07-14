@@ -15,7 +15,7 @@ export const HeaderContainer = styled.header`
   background: ${(props) => props.theme.background};
   z-index: 10;
 
-  @media screen and (max-width: 1392px) {
+  @media screen and (max-width: 1439px) {
     padding: 2rem 128px;
     /* padding: 0 96px; */
   }
@@ -24,16 +24,19 @@ export const HeaderContainer = styled.header`
     padding: 2rem 128px;
     padding: 2rem 96px;
   } */
-  @media screen and (max-width: 1088px) {
+  /* @media screen and (max-width: 1088px) {
     padding: 2rem 64px;
-  }
+  } */
   /* @media screen and (max-width: 1024px) {
     padding: 2rem 64px;
   } */
-  @media screen and (max-width: 960px) {
-    /* padding: 0 128px; */
-    padding: 2rem 32px;
+  @media screen and (max-width: 1374px) {
+    padding: 2rem 64px;
   }
+  /* @media screen and (max-width: 1246px) {
+    padding: 0 128px;
+    padding: 2rem 32px;
+  } */
   /* @media screen and (max-width: 752px) {
     padding: 2rem 96px;
   } */
