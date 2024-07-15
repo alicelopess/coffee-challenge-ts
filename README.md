@@ -43,4 +43,4 @@ Navigate to http://localhost:5173/.
 - [Vite](https://vitejs.dev)
 - [React](https://react.dev)
 - [Styled Components](https://styled-components.com/)
-- [React Router Dom](https://reactrouter.com/en/main)
+- [React Router](https://reactrouter.com/en/main)
