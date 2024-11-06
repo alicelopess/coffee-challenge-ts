@@ -1,5 +1,5 @@
-# 🚧 In Progress 
-## Coffee Shop App
+<!--# 🚧 In Progress-->
+# Coffee Shop App
 
 The Coffee Shop App is a web application that allows you to: 
 
